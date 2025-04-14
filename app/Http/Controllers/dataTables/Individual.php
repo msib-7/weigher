@@ -16,6 +16,7 @@ class Individual extends Controller
             ms303s_1_individual::query()
                 ->where('no', '=', null)
                 ->orderBy('datetime', 'desc')
+                ->limit(10)
         )
         ->addIndexColumn()
         ->toJson();

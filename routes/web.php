@@ -30,3 +30,6 @@ Route::get('/data/json/individu', [Individual::class, 'getData'])->name('data.js
 Route::get('/data/json/kelompok', [Group::class, 'getData'])->name('data.jsonKelompok');
 Route::get('/data/json/summary', [Summary::class, 'getData'])->name('data.jsonSummary');
 Route::get('/data', [DashboardController::class, 'index'])->name('data.index');
+
+Route::get('/getBn2', [Group::class, 'getBn']);
+Route::get('/getIpc/{bn}', [Group::class, 'getIpc']);

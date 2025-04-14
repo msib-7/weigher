@@ -85,7 +85,7 @@
                             <!--end::Logo-->
                             <!--begin::Toolbar-->
                             <div class="flex-equal text-end ms-1">
-                                <a href="../../demo1/dist/authentication/layouts/corporate/sign-in.html" class="btn btn-success">Sign In</a>
+                                {{-- <a href="../../demo1/dist/authentication/layouts/corporate/sign-in.html" class="btn btn-success">Sign In</a> --}}
                                 @if (route('v1.dashboard') != url()->current())
                                     <a href="{{ route('v1.dashboard') }}" class="btn btn-light-danger">Back</a>
                                 @endif
@@ -206,9 +206,10 @@
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
     <script src="{{asset("/assets/plugins/global/plugins.bundle.js")}}"></script>
     <script src="{{asset("/assets/js/scripts.bundle.js")}}"></script>
+    <!--end::Global Javascript Bundle-->
+    @yield('scripts')
     <script src="{{ asset('assets/js/check.js') }}"></script>
     @include('layout.alert')
-    <!--end::Global Javascript Bundle-->
     <script>
         $(document).ready(function () {
             $('.page-loading').fadeIn();
@@ -336,7 +337,7 @@
             });
         });
     </script>
-    @yield('scripts')
+    
     <!--end::Javascript-->
 </body>
 <!--end::Body-->
