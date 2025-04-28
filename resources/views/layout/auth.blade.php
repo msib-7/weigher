@@ -3,7 +3,6 @@
 <!--begin::Head-->
 
 <head>
-    <base href="../../../" />
     <title>PT Kalbe Farma</title>
     <meta charset="utf-8" />
     {{-- <meta name="description" content="The most advanced Bootstrap 5 Admin Theme with 40 unique prebuilt layouts on Themeforest trusted by 100,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel versions. Grab your copy now and get life-time updates for free." />
@@ -17,7 +16,7 @@
     <meta property="og:site_name" content="PT Kalbe Farma" />
     <link rel="shortcut icon" href="{{ asset('assets/logo/logo_only.png') }}" />
     <!--begin::Fonts(mandatory for all pages)-->
-    <link rel="stylesheet" href="{{asset("assets/css/fonts-googleapis.css") }}" />
+    <link rel="stylesheet" href="{{ asset("assets/css/fonts-googleapis.css") }}" />
     <!--end::Fonts-->
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
     <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
@@ -99,8 +98,8 @@ style="background-image: url('/assets/img/bglineB.svg'); background-repeat: repe
     <!--begin::Javascript-->
     <script src="{{ asset('assets/js/jquery-3.7.1.js')}}" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="/assets/plugins/global/plugins.bundle.js"></script>
-    <script src="/assets/js/scripts.bundle.js"></script>
+    <script src="{{ asset('/assets/plugins/global/plugins.bundle.js')}}"></script>
+    <script src="{{ asset("/assets/js/scripts.bundle.js")}}"></script>
     <script src="{{ asset('assets/js/check.js') }}"></script>
     <!--end::Global Javascript Bundle-->
     @include('layout.alert')
