@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="PT Kalbe Farma" />
     <link rel="shortcut icon" href="{{ asset('assets/logo/logo_only.png') }}" />
     <!--begin::Fonts(mandatory for all pages)-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+    <link rel="stylesheet" href="{{asset("assets/css/fonts-googleapis.css") }}" />
     <!--end::Fonts-->
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
     <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
