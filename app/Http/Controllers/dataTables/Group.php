@@ -3,7 +3,13 @@
 namespace App\Http\Controllers\dataTables;
 
 use App\Http\Controllers\Controller;
-use App\Models\ms303s_1\ms303s_1_group;
+use App\Models\ms204ts_com9_4\ms204ts_com9_4;
+use App\Models\ms204ts_com9_4\ms204ts_com9_4_group;
+use App\Models\ms204ts_com9_4\ms204ts_com9_4_individual;
+use App\Models\ms204ts_com9_4\ms204ts_com9_4_summary;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
+use DateTime;
 use DB;
 use Illuminate\Http\Request;
 use Schema;
@@ -15,125 +21,59 @@ class Group extends Controller
     {
         // Validasi harus ada parameter BN
         if ($request->ajax()) {
-            if (!$request->has('bn') || empty($request->bn)) {
-                return response()->json(['error' => 'BN parameter is required'], 400);
-            }
-
-            $query = ms303s_1_group::query()
-                ->whereNotNull('no')
-                ->whereNull('n')
-                ->where('bn', $request->bn)
-                ->limit(10);
-
-            // Check if ipc_flag is provided and filter accordingly
-            if ($request->has('ipc_flag') && !empty($request->ipc_flag)) {
-                $query->where('ipc', $request->ipc_flag); // Adjust this line based on your actual column name for IPC flag
-            }
+            $query = ms204ts_com9_4_group::query()
+                ->where('lot', $request->bn);
 
             return DataTables::of($query)
                 ->addIndexColumn()
                 ->editColumn('datetime', function ($row) {
-                    return \Carbon\Carbon::parse($row->datetime)->format('d-m-Y H:i:s');
+                    return Carbon::parse($row->datetime)->format('d-m-Y H:i:s');
                 })
                 ->make(true);
         }
-
-        if (!$request->has('bn') || empty($request->bn)) {
-            return response()->json(['error' => 'BN parameter is required'], 400);
-        }
-
-        $query = ms303s_1_group::query()
-            ->whereNotNull('no')
-            ->whereNull('n')
-            ->where('bn', $request->bn)
-            ->limit(10)
-            ->orderBy('datetime', 'desc');
-
-        $this->getIpc($request->bn);
+        $query = ms204ts_com9_4_group::query()
+            ->where('lot', $request->bn);
 
         return DataTables::of($query)
             ->addIndexColumn()
             ->editColumn('datetime', function ($row) {
-                return \Carbon\Carbon::parse($row->datetime)->format('d-m-Y H:i:s');
+                return Carbon::parse($row->datetime)->format('d-m-Y H:i:s');
             })
             ->make(true);
     }
 
     public function index(Request $request)
     {
-        // Jika tidak ada parameter BN, bisa redirect kembali atau tampilkan pesan
-        if (!$request->has('bn') || empty($request->bn)) {
-            return redirect()->route('v1.dashboard')->with('error', 'Silakan pilih BN terlebih dahulu');
-        }
-
-        $bn = $request->bn;
-        return view('pages.table.group.index', compact('bn'));
+        return view('pages.table.group.index');
     }
 
     public function getBn(Request $request)
     {
-        $bns = ms303s_1_group::query()
-            ->select('bn')
-            ->distinct()
-            ->orderBy('bn', 'asc')
-            ->pluck('bn');
+        $date = $request->date; // Ensure this is in 'Y-m-d' format if you're using whereDate
 
-        return response()->json($bns);
+        $bns = ms204ts_com9_4_group::query()
+            ->select('lot', 'datetime')
+            ->whereDate('datetime', '=', $date) // Use whereDate if you want to filter by date only
+            ->orderBy('lot', 'desc')
+            ->pluck('lot');
+
+        // Convert the collection to an array and filter unique values
+        $uniqueBns = $bns->unique()->values(); // This will keep only unique values
+
+        return response()->json($uniqueBns);
     }
 
     public function getIpc($bn)
     {
-        // Step 1: Check if the 'ipc' column exists before adding it
-        if (!Schema::hasColumn('ms303s_1_group', 'ipc')) {
-            DB::statement('ALTER TABLE public.ms303s_1_group ADD COLUMN ipc INTEGER;');
-        }
-
-        // Step 2: Calculate and update the 'ipc' column
-        DB::statement('
-            WITH ranked_data AS (
-                SELECT *,
-                    ROW_NUMBER() OVER (ORDER BY datetime) AS rn
-                FROM public.ms303s_1_group
-            ),
-            flagged_data AS (
-                SELECT *,
-                    CASE 
-                        WHEN no = 1 THEN 1
-                        ELSE 0
-                    END AS is_one
-                FROM ranked_data
-            ),
-            final_data AS (
-                SELECT *,
-                    SUM(is_one) OVER (PARTITION BY bn ORDER BY rn ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS calculated_ipc,
-                    LAG(no) OVER (PARTITION BY bn ORDER BY rn) AS prev_no
-                FROM flagged_data
-            )
-            UPDATE public.ms303s_1_group
-            SET ipc = subquery.ipc
-            FROM (
-                SELECT no, bn, datetime,
-                    CASE 
-                        WHEN is_one = 1 THEN calculated_ipc
-                        WHEN prev_no = 1 OR prev_no != 1 THEN calculated_ipc
-                        ELSE 0
-                    END AS ipc
-                FROM final_data
-            ) AS subquery
-            WHERE public.ms303s_1_group.no = subquery.no
-            AND public.ms303s_1_group.bn = subquery.bn
-            AND public.ms303s_1_group.datetime = subquery.datetime;
-        ');
-
         // Step 3: Select the updated data and include ipc as flags
-        $updatedData = DB::table('ms303s_1_group')
-            ->select('no', 'bn', 'datetime', 'ipc')
+        $dataIpc = ms204ts_com9_4_group::query()
+            ->where('lot', $bn)
             ->orderBy('datetime', 'desc')
             ->get();
 
         // Collect unique flags based on the updated ipc values
         $uniqueFlags = [];
-        foreach ($updatedData as $item) {
+        foreach ($dataIpc as $item) {
             // Only add the flag if it's not already in the array
             if (!in_array($item->ipc, $uniqueFlags)) {
                 $uniqueFlags[] = $item->ipc; // Use ipc as the flag
@@ -142,7 +82,46 @@ class Group extends Controller
 
         return response()->json([
             'flags' => $uniqueFlags,
-            'data' => $updatedData // Return the updated data
+            'data' => $dataIpc // Return the updated data
         ]);
+    }
+
+    public function getSummary($bn, $ipc)
+    {
+        $dataSum = ms204ts_com9_4_summary::query()
+            ->where('lot', $bn)
+            ->where('ipc', $ipc)
+            ->orderBy('datetime', 'desc')
+            ->get();
+            
+            // $dataAll = ms204ts_com9_4_group::query()
+            // ->whereNotNull('no')
+            // ->whereNull('n')
+            // ->where('lot', $bn)
+            // ->where('ipc', $ipc)
+            // ->limit(10)
+            // ->orderBy('no', 'asc')
+            // ->get();
+
+        // dd($dataAll);
+        // return response()->json([$dataSum, $dataAll]);
+        return response()->json($dataSum);
+    }
+
+    public function print(Request $request)
+    {
+        // Generate a unique print ID
+        $printId = (string) \Ramsey\Uuid\Uuid::uuid4();
+        $data['printId'] = $printId;
+        $data['namaMesin'] = 'ms204ts_com9_4';
+        $data['namaBn'] = $request->bn;
+        // Get the data and summary from the request
+        $data['dataTimbangan'] = $request->data; // This is already an array
+        $data['summaryAwal'] = $request->summary['awal']; // This is also an array
+        $data['summaryTengah'] = $request->summary['tengah']; // This is also an array
+        $data['summaryAkhir'] = $request->summary['akhir']; // This is also an array
+
+        $pdf = Pdf::loadView('partials.pdf.group.index', $data)->set_option('isPhpEnabled', true);
+        return $pdf->stream('Group.pdf');
     }
 }

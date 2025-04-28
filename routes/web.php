@@ -21,7 +21,11 @@ Route::prefix('v1')->name('v1.')->group(function () {
             Route::get('', [Individual::class, 'index'])->name('index');
             Route::post('print', [Individual::class, 'print'])->name('print');
         });
-        Route::get('group', [Group::class, 'index'])->name('group');
+        Route::prefix('group')->name('group.')->group(function () {
+            Route::get('', [Group::class, 'index'])->name('index');
+            Route::post('print', [Group::class, 'print'])->name('print');
+        });
+        // Route::get('group', [Group::class, 'index'])->name('group');
         Route::get('summary', [Summary::class, 'index'])->name('summary');
     });
 });
@@ -31,5 +35,13 @@ Route::get('/data/json/kelompok', [Group::class, 'getData'])->name('data.jsonKel
 Route::get('/data/json/summary', [Summary::class, 'getData'])->name('data.jsonSummary');
 Route::get('/data', [DashboardController::class, 'index'])->name('data.index');
 
-Route::get('/getBn2', [Group::class, 'getBn']);
-Route::get('/getIpc/{bn}', [Group::class, 'getIpc']);
+Route::get('/getBn/I', [Individual::class, 'getBn']);
+Route::get('/getBn2', [DashboardController::class, 'getBn']);
+Route::get('/getSummary/I/{bn}/{ipc}', [Individual::class, 'getSummary']);
+Route::get('/getSummary/G/{bn}/{ipc}', [Group::class, 'getSummary']);
+Route::get('/getIpc/G/{bn}', [Group::class, 'getIpc']);
+Route::get('/getIpc/I/{bn}', [Individual::class, 'getIpc']);
+
+
+Route::get('/chart/1/{bn}', [Individual::class, 'loadChart1']);
+// Route::get('/getIpc/S/{bn}', [Group::class, 'getIpc']);

@@ -17,9 +17,29 @@
                 <!--end::Description-->
             </div>
             <!--end::Heading-->
-            <div class="d-flex flex-wrap flex-center justify-content-lg-between mx-auto w-xl-900px">
+            {{-- <div class="d-flex flex-wrap flex-center justify-content-lg-between mx-auto w-xl-900px">
                 <div class="col-12">
                     <div class="row">
+                        <div class="col-6">
+                            <!--begin::Input group-->
+                            <div class="d-flex flex-column mb-5">
+                                <!--begin::Label-->
+                                <label class="d-flex align-items-center fs-5 fw-semibold mb-2">
+                                    <span class="required text-gray-300">Tanggal</span>
+                                    <span class="ms-1" data-bs-toggle="tooltip"
+                                        title="Your payment statements may very based on selected position">
+                                        <i class="ki-duotone ki-information fs-7">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                            <span class="path3"></span>
+                                        </i>
+                                    </span>
+                                </label>
+                                <!--end::Label-->
+                                <input class="form-control" placeholder="Pick a date" id="kt_daterangepicker_1" />
+                            </div>
+                            <!--end::Input group-->
+                        </div>
                         <div class="col-6">
                             <!--begin::Input group-->
                             <div class="d-flex flex-column mb-5">
@@ -44,34 +64,15 @@
                             </div>
                             <!--end::Input group-->
                         </div>
-                        <div class="col-6">
-                            <!--begin::Input group-->
-                            <div class="d-flex flex-column mb-5">
-                                <!--begin::Label-->
-                                <label class="d-flex align-items-center fs-5 fw-semibold mb-2">
-                                    <span class="required text-gray-300">Tanggal</span>
-                                    <span class="ms-1" data-bs-toggle="tooltip" title="Your payment statements may very based on selected position">
-                                        <i class="ki-duotone ki-information fs-7">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                            <span class="path3"></span>
-                                        </i>
-                                    </span>
-                                </label>
-                                <!--end::Label-->
-                                <input class="form-control" placeholder="Pick a date" id="kt_datepicker_1" />
-                            </div>
-                            <!--end::Input group-->
-                        </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!--begin::Menu-->
             <div class="d-flex flex-center">
                 <!--begin::Items-->
                 <div class="d-flex flex-wrap flex-center justify-content-lg-between mb-15 mx-auto w-xl-900px">
                     <!--begin::Item-->
-                    <a href="{{ route('v1.table.individual.index') }}">
+                    <a href="#" id="individual-data-link" data-route="{{ route('v1.table.individual.index') }}">
                         <div class="d-flex flex-column flex-center h-200px w-200px h-lg-250px w-lg-250px m-3 bgi-no-repeat bgi-position-center bgi-size-contain"
                             style="background-image: url('assets/media/svg/misc/octagon.svg')">
                             <!--begin::Symbol-->
@@ -91,7 +92,7 @@
                     </a>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <a href="#" id="group-data-link" data-route="{{ route('v1.table.group') }}">
+                    <a href="#" id="group-data-link" data-route="{{ route('v1.table.group.index') }}">
                         <div class="d-flex flex-column flex-center h-200px w-200px h-lg-250px w-lg-250px m-3 bgi-no-repeat bgi-position-center bgi-size-contain"
                             style="background-image: url('assets/media/svg/misc/octagon.svg')">
                             <!--begin::Symbol-->
@@ -156,40 +157,77 @@
     <script src="assets/plugins/custom/typedjs/typedjs.bundle.js"></script>
     <script src="assets/js/custom/landing.js"></script>
     <script>
-        $("#kt_datepicker_1").flatpickr();
+        // $("#kt_daterangepicker_1").flatpickr();
+        // $("#kt_daterangepicker_1").daterangepicker();
 
-        $(function () {
-                function loadBnOptions() {
-                    $.ajax({
-                        url: '/getBn2',
-                        method: 'GET',
-                        success: function (data) {
-                            $.each(data, function (index, value) {
-                                $('#bn-filter').append($('<option>', {
-                                    value: value,
-                                    text: value
-                                }));
-                            });
-                        }
-                    });
-                }
+        // $(function () {
+        //     function loadBnOptions() {
+        //         const selectedDate = $('#kt_daterangepicker_1').val();
+        //         if (!selectedDate) {
+        //             alert('Silakan pilih tanggal terlebih dahulu');
+        //             return;
+        //         }
 
-                // Handle Group Data link click
-                $('#group-data-link').on('click', function (e) {
-                    e.preventDefault();
-                    const selectedBn = $('#bn-filter').val();
-                    const baseRoute = $(this).data('route');
+        //         $.ajax({
+        //             url: '/getBn2',
+        //             method: 'get',
+        //             data: {
+        //                 date: selectedDate,
+        //                 _token: '{{ csrf_token() }}' // Include CSRF token if needed
+        //             },
+        //             success: function (data) {
+        //                 $('#bn-filter').empty(); // Clear previous options
+        //                 // Assuming data is an array of objects with 'lot' and 'datetime' properties
+        //                 $.each(data, function (index, value) {
+        //                     $('#bn-filter').append($('<option>', {
+        //                         value: value.lot, // Assuming 'lot' is the value you want to set
+        //                         text: value.lot + ' - ' + value.datetime // Display 'lot' as the text
+        //                     }));
+        //                 });
+        //             },
+        //             error: function (xhr, status, error) {
+        //                 // Handle errors here
+        //                 console.error('AJAX Error:', status, error);
+        //                 alert('Terjadi kesalahan saat memuat data. Silakan coba lagi.');
+        //             }
+        //         });
+        //     }
 
-                    if (selectedBn) {
-                        window.location.href = baseRoute + '?bn=' + encodeURIComponent(selectedBn);
-                    } else {
-                        alert('Silakan pilih BN terlebih dahulu');
-                        // Atau bisa juga redirect tanpa filter
-                        // window.location.href = baseRoute;
-                    }
-                });
-                // Load opsi bn saat pertama kali halaman dimuat
-                loadBnOptions();
+        //     function validateSelection() {
+        //         const selectedDate = $('#kt_daterangepicker_1').val();
+        //         const selectedBn = $('#bn-filter').val();
+        //         const isValid = selectedDate && selectedBn;
+
+        //         // Mengaktifkan atau menonaktifkan menu data
+        //         $('#group-data-link').toggleClass('disabled', !isValid);
+        //     }
+
+            // Handle Group Data link click
+            $('#individual-data-link').on('click', function (e) {
+                e.preventDefault();
+                const baseRoute = $(this).data('route');
+                window.location.href = baseRoute ;
             });
+
+            // Handle Group Data link click
+            $('#group-data-link').on('click', function (e) {
+                e.preventDefault();
+                const baseRoute = $(this).data('route');
+                window.location.href = baseRoute;
+            });
+
+        //     // Event listener untuk memeriksa pilihan
+        //     $('#kt_daterangepicker_1').on('change', function () {
+        //         validateSelection();
+        //         loadBnOptions();
+        //     });
+        //     // Event listener untuk memeriksa pilihan
+        //     $('#bn-filter').on('change', function () {
+        //         validateSelection();
+        //     });
+
+        //     // Load opsi bn saat pertama kali halaman dimuat
+        //     // loadBnOptions();
+        // });
     </script>
 @endsection

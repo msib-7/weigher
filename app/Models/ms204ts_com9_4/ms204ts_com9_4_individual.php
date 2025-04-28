@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Models\ms303s_1;
+namespace App\Models\ms204ts_com9_4;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ms303s_1_individual extends Model
+class ms204ts_com9_4_individual extends Model
 {
     use HasFactory;
 
-    protected $table = 'ms303s_1_individual';
-
+    protected $table = 'ms204ts_com9_4_individual';
     protected $guarded;
 }

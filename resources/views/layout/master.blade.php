@@ -14,7 +14,6 @@
     <!--end::Fonts-->
     <!--begin::Vendor Stylesheets(used for this page only)-->
     <link href="{{asset("assets/plugins/custom/fullcalendar/fullcalendar.bundle.css")}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset("assets/plugins/custom/datatables/datatables.bundle.css")}}" rel="stylesheet" type="text/css" />
     @yield('styles')
     <!--end::Vendor Stylesheets-->
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
@@ -207,9 +206,7 @@
     <script src="{{asset("/assets/plugins/global/plugins.bundle.js")}}"></script>
     <script src="{{asset("/assets/js/scripts.bundle.js")}}"></script>
     <!--end::Global Javascript Bundle-->
-    @yield('scripts')
     <script src="{{ asset('assets/js/check.js') }}"></script>
-    @include('layout.alert')
     <script>
         $(document).ready(function () {
             $('.page-loading').fadeIn();
@@ -337,7 +334,8 @@
             });
         });
     </script>
-    
+    @yield('scripts')
+    @include('layout.alert')
     <!--end::Javascript-->
 </body>
 <!--end::Body-->

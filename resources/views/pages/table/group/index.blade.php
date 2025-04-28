@@ -9,23 +9,20 @@
                 <div class="card mt-3 shadow">
                     <div class="card-header">
                         <div class="card-title">
-                            <h4>Group Data - BN: <span id="bn-display"></span></h4>
+                            <h4>Nomor BN: <span id="bn-display"></span></h4>
+                        </div>
+                        <div class="card-toolbar">
+                            <button id="export-pdf-btn" class="btn btn-danger me-2">Export to PDF</button>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="row mb-3">
-                            <div class="d-flex align-items-center flex-equal">
+                            {{-- <div class="d-flex align-items-center flex-equal">
                                 <label for="filter-bn" class="form-label">Filter by BN:</label>
-                                <select class="form-select" name="bn-filter" id="bn-filter" >
-                                </select>
-                            </div>
-                            <div class="col-md-4 flex-equal text-end ms-1">
-                                <button id="filter-btn" class="btn btn-primary me-2">Filter</button>
-                                {{-- <a href="{{route('v1.table.individual.print')}}"> --}}
-                                    <button id="export-pdf-btn" class="btn btn-danger me-2">Export to PDF</button>
-                                    {{-- </a> --}}
-                                <button id="print-btn" class="btn btn-secondary">Print</button>
-                            </div>
+                                <input id=bn-filter list="bnFilter" class="form-control" placeholder="Search BN...">
+                                <datalist id="bnFilter">
+                                </datalist>
+                            </div> --}}
                         </div>
                         <div class="card-content">
                             <div class="row">
@@ -50,7 +47,7 @@
                                                 <!--begin::Label-->
                                                 <label class="d-flex align-items-center fs-5 fw-semibold mb-2" for="ipc-flag-select-awal">
                                                     <span class="required text-gray-700">IPC Ke-</span>
-                                                    <span class="ms-1" data-bs-toggle="tooltip" title="Your payment statements may very based on selected position">
+                                                    <span class="ms-1" data-bs-toggle="tooltip" title="Pilih IPC untuk ditampilkan">
                                                         <i class="ki-duotone ki-information fs-7">
                                                             <span class="path1"></span>
                                                             <span class="path2"></span>
@@ -60,7 +57,7 @@
                                                 </label>
                                                 <!--end::Label-->
                                                 <!--begin::Select-->
-                                                <select name="bn-filter" id="ipc-flag-select-awal" data-control="select2" data-placeholder="pilih BN"
+                                                <select name="bn-filter" id="ipc-flag-select-awal"
                                                     class="form-select form-select">
                                                     <option value="">loading...</option>
                                                 </select>
@@ -68,16 +65,17 @@
                                             </div>
                                             <!--end::Input group-->
                                             <div class="card-content">
-                                                <table class="table table-striped table-bordered table-hover" style="width:100%" id="weigher-table-individu-awal">
-                                                    <thead>
-                                                        <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase">
-                                                            <th class="text-start min-w-30px px-2"></th>
-                                                            <th class="text-start">DateTime</th>
-                                                            {{-- <th class="text-start">no</th> --}}
-                                                            <th class="text-start">weight</th>
-                                                        </tr>
-                                                    </thead>
-                                                </table>
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-bordered table-hover" style="width:100%" id="weigher-table-individu-awal">
+                                                        <thead>
+                                                            <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase">
+                                                                <th class="text-start" width="35%">No.Tablet/Sample</th>
+                                                                <th class="text-start">DateTime</th>
+                                                                <th class="text-start">weight</th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="card">
@@ -193,7 +191,7 @@
                                                 <!--begin::Label-->
                                                 <label class="d-flex align-items-center fs-5 fw-semibold mb-2" for="ipc-flag-select-tengah">
                                                     <span class="required text-gray-700">IPC Ke-</span>
-                                                    <span class="ms-1" data-bs-toggle="tooltip" title="Your payment statements may very based on selected position">
+                                                    <span class="ms-1" data-bs-toggle="tooltip" title="Pilih IPC untuk ditampilkan">
                                                         <i class="ki-duotone ki-information fs-7">
                                                             <span class="path1"></span>
                                                             <span class="path2"></span>
@@ -210,16 +208,17 @@
                                                 <!--end::Select-->
                                             </div>
                                             <!--end::Input group-->
-                                            <table class="table table-striped table-bordered table-hover" style="width:100%" id="weigher-table-individu-tengah">
-                                                <thead>
-                                                    <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase">
-                                                        <th class="text-start min-w-30px px-2"></th>
-                                                        <th class="text-start">DateTime</th>
-                                                        {{-- <th class="text-start">no</th> --}}
-                                                        <th class="text-start">weight</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-bordered table-hover" style="width:100%" id="weigher-table-individu-tengah">
+                                                    <thead>
+                                                        <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase">
+                                                            <th class="text-start" width="35%">No.Tablet/Sample</th>
+                                                            <th class="text-start">DateTime</th>
+                                                            <th class="text-start">weight</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="card">
@@ -334,7 +333,7 @@
                                                 <!--begin::Label-->
                                                 <label class="d-flex align-items-center fs-5 fw-semibold mb-2" for="ipc-flag-select-akhir">
                                                     <span class="required text-gray-700">IPC Ke-</span>
-                                                    <span class="ms-1" data-bs-toggle="tooltip" title="Your payment statements may very based on selected position">
+                                                    <span class="ms-1" data-bs-toggle="tooltip" title="Pilih IPC untuk ditampilkan">
                                                         <i class="ki-duotone ki-information fs-7">
                                                             <span class="path1"></span>
                                                             <span class="path2"></span>
@@ -351,16 +350,17 @@
                                                 <!--end::Select-->
                                             </div>
                                             <!--end::Input group-->
-                                            <table class="table table-striped table-bordered table-hover" style="width:100%" id="weigher-table-individu-akhir">
-                                                <thead>
-                                                    <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase">
-                                                        <th class="text-start min-w-30px px-2"></th>
-                                                        <th class="text-start">DateTime</th>
-                                                        {{-- <th class="text-start">no</th> --}}
-                                                        <th class="text-start">weight</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-bordered table-hover" style="width:100%" id="weigher-table-individu-akhir">
+                                                    <thead>
+                                                        <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase">
+                                                            <th class="text-start" width="35%">No.Tablet/Sample</th>
+                                                            <th class="text-start">DateTime</th>
+                                                            <th class="text-start">weight</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="card">
@@ -457,6 +457,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row my-10">
+                                <div class="col">
+                                    <div class="card card-flush ">
+                                        <div class="card-body">
+                                            <div id="kt_apexcharts_3" style="height: 400px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -524,44 +533,15 @@
     <script>
         $(function () {
             const urlParams = new URLSearchParams(window.location.search);
-            var bnParam = urlParams.get('bn');
+            let bnParam;
+            let selectedBn;
+            let selectedFlag1, selectedFlag2, selectedFlag3;
+            let chart1, chart2, chart3;
 
-            if (!bnParam) {
-                alert('Parameter BN tidak ditemukan');
-                window.location.href = "{{ route('v1.dashboard') }}";
-                return;
-            }
-
-            $('#bn-display').text(bnParam); // Menampilkan BN yang dipilih
-
-            function loadBnOptions() {
-                var bnParam = urlParams.get('bn'); // Ambil nilai BN dari URL
-                $.ajax({
-                    url: '/getBn2',
-                    method: 'GET',
-                    success: function (data) {
-                        $.each(data, function (index, value) {
-                            
-                            // Create the option element
-                            var option = $('<option>', {
-                                value: value,
-                                text: value
-                            });
-
-                            // Check if the value matches bnParam
-                            if (value === bnParam) {
-                                option.prop('selected', true); // Set the option as selected
-                            }
-
-                            // Append the option to the dropdown
-                            $('#bn-filter').append(option);
-                        });
-                    }
-                });
-            }
-
-            // Load opsi bn saat pertama kali halaman dimuat
-            loadBnOptions();
+            // Hide the tables initially
+            $('#weigher-table-individu-awal').hide();
+            $('#weigher-table-individu-tengah').hide();
+            $('#weigher-table-individu-akhir').hide();
 
             // Event handler untuk filter
             $('#bn-filter').on('change', function () {
@@ -572,6 +552,9 @@
                 }
 
                 loadIpcFlags(bnParam); // Load IPC flags berdasarkan BN yang dipilih
+                $('#weigher-table-individu-awal').hide();
+                $('#weigher-table-individu-tengah').hide();
+                $('#weigher-table-individu-akhir').hide();
                 tableAwal.ajax.reload(); // Reload DataTable dengan filter baru
                 tableTengah.ajax.reload(); // Reload DataTable dengan filter baru
                 tableAkhir.ajax.reload(); // Reload DataTable dengan filter baru
@@ -579,43 +562,25 @@
 
             function loadIpcFlags(bn) {
                 $.ajax({
-                    url: '/getIpc/' + bn,
+                    url: '/getIpc/G/' + bn,
                     method: 'GET',
                     success: function (response) {
-                        const ipcAwal = $('#ipc-flag-select-awal'); // Your select field ID
-                        ipcAwal.empty();
-                        ipcAwal.append('<option value="">Select IPC Flag</option>');
+                        const selectIds = ['#ipc-flag-select-awal', '#ipc-flag-select-tengah', '#ipc-flag-select-akhir'];
 
-                        // Populate the select field with unique flags
-                        $.each(response.flags, function (index, flag) {
-                            ipcAwal.append($('<option>', {
-                                value: flag,
-                                text: flag
-                            }));
-                        });
+                        selectIds.forEach(function (selectId) {
+                            const selectField = $(selectId);
+                            selectField.empty();
+                            selectField.append('<option value="">Select IPC</option>');
 
-                        const ipcTengah = $('#ipc-flag-select-tengah'); // Your select field ID
-                        ipcTengah.empty();
-                        ipcTengah.append('<option value="">Select IPC Flag</option>');
-
-                        // Populate the select field with unique flags
-                        $.each(response.flags, function (index, flag) {
-                            ipcTengah.append($('<option>', {
-                                value: flag,
-                                text: flag
-                            }));
-                        });
-
-                        const ipcAkhir = $('#ipc-flag-select-akhir'); // Your select field ID
-                        ipcAkhir.empty();
-                        ipcAkhir.append('<option value="">Select IPC Flag</option>');
-
-                        // Populate the select field with unique flags
-                        $.each(response.flags, function (index, flag) {
-                            ipcAkhir.append($('<option>', {
-                                value: flag,
-                                text: flag
-                            }));
+                            // Populate the select field with unique flags, excluding null or empty values
+                            response.flags.forEach(function (flag) {
+                                if (flag) { // This checks if flag is not null or an empty string
+                                    selectField.append($('<option>', {
+                                        value: flag,
+                                        text: flag
+                                    }));
+                                }
+                            });
                         });
                     },
                     error: function (error) {
@@ -632,6 +597,47 @@
                     // Load data into the DataTable based on the selected IPC flag
                     tableAwal.ajax.url('{!! route('data.jsonKelompok') !!}?bn=' + bnParam + '&ipc_flag=' + selectedFlag).load();
                     $('#weigher-table-individu-awal').show(); // Show the table
+                    $.ajax({
+                        url: '/getSummary/' + bnParam + '/' + selectedFlag,
+                        method: 'GET',
+                        success: function ([dataSum, dataAll]) {
+                            if (dataSum.length > 0) {
+                                // Update the summary fields with the dataSum received from the server
+                                $('.n-awal').text(dataSum[0].n);
+                                $('.x-awal').text(dataSum[0].x);
+                                $('.s_dev-awal').text(dataSum[0].s_dev);
+                                $('.s_rel-awal').text(dataSum[0].s_rel);
+                                $('.min-awal').text(dataSum[0].min);
+                                $('.max-awal').text(dataSum[0].max);
+                                $('.diff-awal').text(dataSum[0].diff);
+                                $('.sum-awal').text(dataSum[0].sum);
+                            }
+
+                            // Extract 'no' values and format them
+                            var categories = dataAll.map(function (row) {
+                                return 'Tablet - ' + row.no; // Format as "Tablet - {no}"
+                            });
+                            var data = dataAll.map(function (row) {
+                                return row.weight;
+                            });
+
+                            // Update the chart with new categories and data
+                            if (chart) {
+                                chart.updateOptions({
+                                    xaxis: {
+                                        categories: categories // Update categories
+                                    },
+                                    series: [{
+                                        name: 'Weight',
+                                        data: data // Update data
+                                    }]
+                                });
+                            } else {
+                                // If chart is not initialized, create it
+                                createChart1(categories, data);
+                            }
+                        },
+                    });
                 } else {
                     $('#weigher-table-individu-awal').hide(); // Hide the table if no flag is selected
                 }
@@ -642,6 +648,23 @@
                 if (selectedFlag) {
                     tableTengah.ajax.url('{!! route('data.jsonKelompok') !!}?bn=' + bnParam + '&ipc_flag=' + selectedFlag).load();
                     $('#weigher-table-individu-tengah').show();
+                    $.ajax({
+                        url: '/getSummary/' + bnParam + '/' + selectedFlag,
+                        method: 'GET',
+                        success: function ([dataSum, dataAll]) {
+                            if (dataSum.length > 0) {
+                                // Update the summary fields with the dataSum received from the server
+                                $('.n-tengah').text(dataSum[0].n);
+                                $('.x-tengah').text(dataSum[0].x);
+                                $('.s_dev-tengah').text(dataSum[0].s_dev);
+                                $('.s_rel-tengah').text(dataSum[0].s_rel);
+                                $('.min-tengah').text(dataSum[0].min);
+                                $('.max-tengah').text(dataSum[0].max);
+                                $('.diff-tengah').text(dataSum[0].diff);
+                                $('.sum-tengah').text(dataSum[0].sum);
+                            }
+                        },
+                    });
                 } else {
                     $('#weigher-table-individu-tengah').hide();
                 }
@@ -652,6 +675,23 @@
                 if (selectedFlag) {
                     tableAkhir.ajax.url('{!! route('data.jsonKelompok') !!}?bn=' + bnParam + '&ipc_flag=' + selectedFlag).load();
                     $('#weigher-table-individu-akhir').show();
+                    $.ajax({
+                        url: '/getSummary/' + bnParam + '/' + selectedFlag,
+                        method: 'GET',
+                        success: function ([dataSum, dataAll]) {
+                            if (dataSum.length > 0) {
+                                // Update the summary fields with the dataSum received from the server
+                                $('.n-akhir').text(dataSum[0].n);
+                                $('.x-akhir').text(dataSum[0].x);
+                                $('.s_dev-akhir').text(dataSum[0].s_dev);
+                                $('.s_rel-akhir').text(dataSum[0].s_rel);
+                                $('.min-akhir').text(dataSum[0].min);
+                                $('.max-akhir').text(dataSum[0].max);
+                                $('.diff-akhir').text(dataSum[0].diff);
+                                $('.sum-akhir').text(dataSum[0].sum);
+                            }
+                        },
+                    });
                 } else {
                     $('#weigher-table-individu-akhir').hide();
                 }
@@ -712,15 +752,21 @@
                         d.bn = bnParam; // Selalu gunakan BN dari URL
                     }
                 },
+                columnDefs: [{ width: 200, targets: 1 }],
                 lengthMenu: [10, 25, 50, 100],
                 lengthChange: false,
                 paging: false,
+                info: false,
                 columns: [
+                    // {
+                    //     data: 'DT_RowIndex',
+                    //     name: 'DT_RowIndex',
+                    //     orderable: false,
+                    //     searchable: false
+                    // },
                     {
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex',
-                        orderable: false,
-                        searchable: false
+                    data: 'no',
+                    name: 'no',
                     },
                     {
                         data: 'datetime',
@@ -731,8 +777,9 @@
                         name: 'weight'
                     },
                     {
-                        data: 'bn',
-                        name: 'bn',
+                        data: 'lot',
+                        name: 'lot',
+                        visible: false
                     },
                     {
                         data: 'device_name',
@@ -747,11 +794,6 @@
                     {
                         data: 'epoc',
                         name: 'epoc',
-                        visible: false
-                    },
-                    {
-                        data: 'no',
-                        name: 'no',
                         visible: false
                     },
                     {
@@ -855,15 +897,22 @@
                         d.bn = bnParam; // Selalu gunakan BN dari URL
                     }
                 },
+                columnDefs: [{ width: 200, targets: 1 }],
                 lengthMenu: [10, 25, 50, 100],
                 lengthChange: false,
                 paging: false,
+                info: false,
                 columns: [
+                    // {
+                    //     data: 'DT_RowIndex',
+                    //     name: 'DT_RowIndex',
+                    //     orderable: false,
+                    //     searchable: false
+                    // },
+
                     {
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex',
-                        orderable: false,
-                        searchable: false
+                        data: 'no',
+                        name: 'no',
                     },
                     {
                         data: 'datetime',
@@ -874,8 +923,9 @@
                         name: 'weight'
                     },
                     {
-                        data: 'bn',
-                        name: 'bn'
+                        data: 'lot',
+                        name: 'lot',
+                        visible: false
                     },
                     {
                         data: 'device_name',
@@ -890,11 +940,6 @@
                     {
                         data: 'epoc',
                         name: 'epoc',
-                        visible: false
-                    },
-                    {
-                        data: 'no',
-                        name: 'no',
                         visible: false
                     },
                     {
@@ -998,15 +1043,22 @@
                         d.bn = bnParam; // Selalu gunakan BN dari URL
                     }
                 },
+                columnDefs: [{ width: 200, targets: 1 }],
                 lengthMenu: [10, 25, 50, 100],
                 lengthChange: false,
                 paging: false,
+                info: false,
                 columns: [
+                    // {
+                    //     data: 'DT_RowIndex',
+                    //     name: 'DT_RowIndex',
+                    //     orderable: false,
+                    //     searchable: false
+                    // },
+
                     {
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex',
-                        orderable: false,
-                        searchable: false
+                        data: 'no',
+                        name: 'no',
                     },
                     {
                         data: 'datetime',
@@ -1017,8 +1069,9 @@
                         name: 'weight'
                     },
                     {
-                        data: 'bn',
-                        name: 'bn'
+                        data: 'lot',
+                        name: 'lot',
+                        visible: false
                     },
                     {
                         data: 'device_name',
@@ -1033,11 +1086,6 @@
                     {
                         data: 'epoc',
                         name: 'epoc',
-                        visible: false
-                    },
-                    {
-                        data: 'no',
-                        name: 'no',
                         visible: false
                     },
                     {
@@ -1131,6 +1179,217 @@
                     }
                 }
             });
+
+            $('#export-pdf-btn').on('click', function (e) {
+                var bnParam = $('#bn-display').text();
+                e.preventDefault(); // Prevent the default anchor behavior
+
+                // Check if any of the tables are hidden
+                var isAwalVisible = $('#weigher-table-individu-awal').is(':visible');
+                var isTengahVisible = $('#weigher-table-individu-tengah').is(':visible');
+                var isAkhirVisible = $('#weigher-table-individu-akhir').is(':visible');
+
+                // // If any table is hidden, show an alert and return
+
+                // Gather data from all DataTables
+                var dataAwal = isAwalVisible ? tableAwal.rows().data().toArray() : [];
+                var dataTengah = isTengahVisible ? tableTengah.rows().data().toArray() : [];
+                var dataAkhir = isAkhirVisible ? tableAkhir.rows().data().toArray() : [];
+
+                var data = {
+                    awal: dataAwal,
+                    tengah: dataTengah,
+                    akhir: dataAkhir
+                };
+
+                var summaryAwal = {
+                    n: parseFloat($('.n-awal').text()),
+                    x: parseFloat($('.x-awal').text()),
+                    s_dev: parseFloat($('.s_dev-awal').text()),
+                    s_rel: parseFloat($('.s_rel-awal').text()),
+                    min: parseFloat($('.min-awal').text()),
+                    max: parseFloat($('.max-awal').text()),
+                    diff: parseFloat($('.diff-awal').text()),
+                    sum: parseFloat($('.sum-awal').text()),
+                };
+
+                var summaryTengah = {
+                    n: parseFloat($('.n-tengah').text()),
+                    x: parseFloat($('.x-tengah').text()),
+                    s_dev: parseFloat($('.s_dev-tengah').text()),
+                    s_rel: parseFloat($('.s_rel-tengah').text()),
+                    min: parseFloat($('.min-tengah').text()),
+                    max: parseFloat($('.max-tengah').text()),
+                    diff: parseFloat($('.diff-tengah').text()),
+                    sum: parseFloat($('.sum-tengah').text()),
+                };
+
+                var summaryAkhir = {
+                    n: parseFloat($('.n-akhir').text()),
+                    x: parseFloat($('.x-akhir').text()),
+                    s_dev: parseFloat($('.s_dev-akhir').text()),
+                    s_rel: parseFloat($('.s_rel-akhir').text()),
+                    min: parseFloat($('.min-akhir').text()),
+                    max: parseFloat($('.max-akhir').text()),
+                    diff: parseFloat($('.diff-akhir').text()),
+                    sum: parseFloat($('.sum-akhir').text()),
+                };
+
+                var summary = {
+                    awal: summaryAwal,
+                    tengah: summaryTengah,
+                    akhir: summaryAkhir
+                };
+
+                // Send data to the controller
+                $.ajax({
+                    url: '{{ route('v1.table.group.print') }}',
+                    method: 'POST',
+                    data: {
+                        data: data,
+                        summary: summary,
+                        bn: bnParam,
+                        _token: '{{ csrf_token() }}' // Include CSRF token for security
+                    }
+                });
+            });
+
+            // Function to create the chart
+            function createChart1(categories, data) {
+                var element = document.getElementById('kt_apexcharts_3');
+
+                var height = parseInt(KTUtil.css(element, 'height'));
+                var labelColor = KTUtil.getCssVariableValue('--bs-gray-500');
+                var borderColor = KTUtil.getCssVariableValue('--bs-gray-200');
+                var baseColor = KTUtil.getCssVariableValue('--bs-info');
+                var lightColor = KTUtil.getCssVariableValue('--bs-info-light');
+
+                if (!element) {
+                    return;
+                }
+
+                var options = {
+                    series: [{
+                        name: 'Weight',
+                        data: data // Initial data
+                    }],
+                    chart: {
+                        fontFamily: 'inherit',
+                        type: 'area',
+                        height: height,
+                        toolbar: {
+                            show: false
+                        }
+                    },
+                    plotOptions: {
+
+                    },
+                    legend: {
+                        show: false
+                    },
+                    dataLabels: {
+                        enabled: false
+                    },
+                    fill: {
+                        type: 'solid',
+                        opacity: 1
+                    },
+                    stroke: {
+                        curve: 'smooth',
+                        show: true,
+                        width: 3,
+                        colors: [baseColor]
+                    },
+                    xaxis: {
+                        categories: categories,
+                        axisBorder: {
+                            show: false,
+                        },
+                        axisTicks: {
+                            show: false
+                        },
+                        labels: {
+                            style: {
+                                colors: labelColor,
+                                fontSize: '12px'
+                            }
+                        },
+                        crosshairs: {
+                            position: 'front',
+                            stroke: {
+                                color: baseColor,
+                                width: 1,
+                                dashArray: 3
+                            }
+                        },
+                        tooltip: {
+                            enabled: true,
+                            formatter: undefined,
+                            offsetY: 0,
+                            style: {
+                                fontSize: '12px'
+                            }
+                        }
+                    },
+                    yaxis: {
+                        labels: {
+                            style: {
+                                colors: labelColor,
+                                fontSize: '12px'
+                            }
+                        }
+                    },
+                    states: {
+                        normal: {
+                            filter: {
+                                type: 'none',
+                                value: 0
+                            }
+                        },
+                        hover: {
+                            filter: {
+                                type: 'none',
+                                value: 0
+                            }
+                        },
+                        active: {
+                            allowMultipleDataPointsSelection: false,
+                            filter: {
+                                type: 'none',
+                                value: 0
+                            }
+                        }
+                    },
+                    tooltip: {
+                        style: {
+                            fontSize: '12px'
+                        },
+                        y: {
+                            formatter: function (val) {
+                                return val
+                            }
+                        }
+                    },
+                    colors: [lightColor],
+                    grid: {
+                        borderColor: borderColor,
+                        strokeDashArray: 4,
+                        yaxis: {
+                            lines: {
+                                show: true
+                            }
+                        }
+                    },
+                    markers: {
+                        strokeColor: baseColor,
+                        strokeWidth: 3
+                    }
+                };
+
+                var chart = new ApexCharts(element, options);
+                chart.render();
+            }
+
         });
     </script>
 @endsection
