@@ -84,14 +84,12 @@
                             <!--end::Logo-->
                             <!--begin::Toolbar-->
                             <div class="flex-equal text-end ms-1">
-                                @if (route('v1.dashboard') != url()->current())
-                                    <a href="{{ route('v1.dashboard') }}" class="btn btn-light-danger">Back</a>
-                                @endif
                                 <div class="app-navbar-item ms-1 ms-md-4" id="kt_header_user_menu_toggle">
                                     <!--begin::Menu wrapper-->
                                     <div class="cursor-pointer symbol symbol-35px" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
                                         data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
                                         <img src="/assets/media/avatars/blank.png" class="rounded-3" alt="user" />
+                                        <span class="ms-2 fw-semibold">{{ auth()->user()->fullname }}</span>
                                     </div>
                                     <!--begin::User account menu-->
                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-325px"
@@ -111,7 +109,7 @@
                                                             <span class="fw-bold fs-5">{{auth()->user()->fullname}}</span>
                                                         </div>
                                                         <div class="col-12">
-                                                            <span class="badge badge-light-success">{{ auth()->user()->jobTitle }}</span>
+                                                            <span class="badge badge-light-primary">{{ auth()->user()->jobTitle }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -125,7 +123,13 @@
                                         <!--end::Menu separator-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-5">
-                                            <a href="{{route('logout')}}" class="menu-link px-5">Sign Out</a>
+                                            <a href="{{route('logout')}}" class="btn btn-light-danger px-5 w-100">
+                                                <i class="ki-duotone ki-exit-left fs-2x">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                                <span class="fw-semibold">Sign Out</span>
+                                            </a>
                                         </div>
                                         <!--end::Menu item-->
                                     </div>

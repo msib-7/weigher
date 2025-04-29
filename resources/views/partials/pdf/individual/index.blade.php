@@ -4,10 +4,7 @@
 <head>
     <title>Data Timbangan "{{ $namaMesin }}" - {{ $namaBn }}</title>
     <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" href="{{ asset('assets/logo/logo_only.png') }}" />
-    <link rel="stylesheet" href="{{asset("assets/css/inter_font_api.css") }}" />
 
     <style>
         .page-break {
@@ -416,8 +413,6 @@
     <div class="footer">
     </div>
 
-    <script src="{{asset('/assets/plugins/global/plugins.bundle.js"')}}"></script>
-    <script src="{{asset("/assets/js/scripts.bundle.js")}}"></script>
     {{--
     <script>
         // Set the print date

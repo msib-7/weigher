@@ -24,6 +24,9 @@ class Individual extends Controller
                 ->editColumn('datetime', function ($row) {
                     return Carbon::parse($row->datetime)->format('d-m-Y H:i:s');
                 })
+                ->editColumn('weight', function ($row) {
+                    return number_format($row->weight, 2, '.');
+                })
                 ->make(true);
         }
 
@@ -35,6 +38,9 @@ class Individual extends Controller
             ->addIndexColumn()
             ->editColumn('datetime', function ($row) {
                 return Carbon::parse($row->datetime)->format('d-m-Y H:i:s');
+            })
+            ->editColumn('weight', function ($row) {
+                return number_format($row->weight, 2, '.');
             })
             ->make(true);
     }

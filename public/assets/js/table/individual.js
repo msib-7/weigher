@@ -189,7 +189,7 @@ $(function () {
                     if (dataSum.length > 0) {
                         // Update the summary fields with the dataSum received from the server
                         $(".n-awal").text(dataSum[0].n);
-                        $(".x-awal").text(dataSum[0].x);
+                        $(".x-awal").text(parseFloat(dataSum[0].x).toFixed(2));
                         $(".s_dev-awal").text(dataSum[0].s_dev);
                         $(".s_rel-awal").text(dataSum[0].s_rel);
                         $(".min-awal").text(dataSum[0].min);

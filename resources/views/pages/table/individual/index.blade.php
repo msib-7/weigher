@@ -10,10 +10,16 @@
                 <div class="card mt-3 shadow">
                     <div class="card-header">
                         <div class="card-title">
+                            <a href="{{ route('v1.dashboard') }}" class="my-5 me-5 rounded-circle btn btn-icon btn-light-danger">
+                                <i class="ki-duotone ki-arrow-left fs-2x fw-bold">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                </i>
+                            </a>
                             <h4>Individual Data Penimbangan</h4>
                         </div>
                         <div class="card-toolbar">
-                            <button id="export-pdf-btn" class="btn btn-danger me-2">Export to PDF</button>
+                            <button id="export-pdf-btn" class="btn btn-dark me-2">Export to PDF</button>
                         </div>
                     </div>
                     <div class="card-body">
@@ -587,7 +593,7 @@
         var JSON_INDIVIDU_URL = "{{ route('data.jsonIndividu') }}";
         var JSON_INDIVIDU_PRINT_URL = "{{ route('v1.table.individual.print') }}";
     </script>
-    <script src="{{asset('assets/js/table/individual_comp.js')}}"></script>
+    <script src="{{asset('assets/js/table/individual.js')}}"></script>
     
     {{-- <script>
         $(document).ready(function () {
