@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" href="{{ asset('assets/logo/logo_only.png') }}" />
+    <link rel="stylesheet" href="{{asset("assets/css/inter_font_api.css") }}" />
 
     <style>
         .page-break {
