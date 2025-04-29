@@ -84,10 +84,55 @@
                             <!--end::Logo-->
                             <!--begin::Toolbar-->
                             <div class="flex-equal text-end ms-1">
-                                {{-- <a href="../../demo1/dist/authentication/layouts/corporate/sign-in.html" class="btn btn-success">Sign In</a> --}}
                                 @if (route('v1.dashboard') != url()->current())
                                     <a href="{{ route('v1.dashboard') }}" class="btn btn-light-danger">Back</a>
                                 @endif
+                                <div class="app-navbar-item ms-1 ms-md-4" id="kt_header_user_menu_toggle">
+                                    <!--begin::Menu wrapper-->
+                                    <div class="cursor-pointer symbol symbol-35px" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                                        data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+                                        <img src="/assets/media/avatars/blank.png" class="rounded-3" alt="user" />
+                                    </div>
+                                    <!--begin::User account menu-->
+                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-325px"
+                                        data-kt-menu="true">
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <div class="menu-content d-flex align-items-center px-3">
+                                                <!--begin::Avatar-->
+                                                <div class="symbol symbol-50px me-5">
+                                                    <img alt="Logo" src="/assets/media/avatars/blank.png" />
+                                                </div>
+                                                <!--end::Avatar-->
+                                                <!--begin::Username-->
+                                                <div class="d-flex flex-column">
+                                                    <div class="row">    
+                                                        <div class="col-12">
+                                                            <span class="fw-bold fs-5">{{auth()->user()->fullname}}</span>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <span class="badge badge-light-success">{{ auth()->user()->jobTitle }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--end::Username-->
+                                            </div>
+                                        </div>
+                                        <!--end::Menu item-->
+                                
+                                        <!--begin::Menu separator-->
+                                        <div class="separator my-2"></div>
+                                        <!--end::Menu separator-->
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-5">
+                                            <a href="{{route('logout')}}" class="menu-link px-5">Sign Out</a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                    </div>
+                                    <!--end::User account menu-->
+                                    <!--end::Menu wrapper-->
+                                </div>
+                                {{-- <a href="../../demo1/dist/authentication/layouts/corporate/sign-in.html" class="btn btn-success">Sign In</a> --}}
                             </div>
                             <!--end::Toolbar-->
                         </div>
@@ -96,82 +141,8 @@
                     <!--end::Container-->
                 </div>
                 <!--end::Header-->
-                {{-- <!--begin::Landing hero-->
-                <div class="d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px px-9">
-                    <!--begin::Heading-->
-                    <div class="text-center mb-5 mb-lg-10 py-10 py-lg-20">
-                        <!--begin::Title-->
-                        <h1 class="text-white lh-base fw-bold fs-2x fs-lg-3x mb-15">Build An Outstanding Solutions
-                            <br />with
-                            <span
-                                style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
-                                <span id="kt_landing_hero_text">The Best Theme Ever</span>
-                            </span>
-                        </h1>
-                        <!--end::Title-->
-                        <!--begin::Action-->
-                        <a href="../../demo1/dist/index.html" class="btn btn-primary">Try Metronic</a>
-                        <!--end::Action-->
-                    </div>
-                    <!--end::Heading-->
-                    <!--begin::Clients-->
-                    <div class="d-flex flex-center flex-wrap position-relative px-5">
-                        <!--begin::Client-->
-                        <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Fujifilm">
-                            <img src="assets/media/svg/brand-logos/fujifilm.svg" class="mh-30px mh-lg-40px" alt="" />
-                        </div>
-                        <!--end::Client-->
-                        <!--begin::Client-->
-                        <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Vodafone">
-                            <img src="assets/media/svg/brand-logos/vodafone.svg" class="mh-30px mh-lg-40px" alt="" />
-                        </div>
-                        <!--end::Client-->
-                        <!--begin::Client-->
-                        <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="KPMG International">
-                            <img src="assets/media/svg/brand-logos/kpmg.svg" class="mh-30px mh-lg-40px" alt="" />
-                        </div>
-                        <!--end::Client-->
-                        <!--begin::Client-->
-                        <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Nasa">
-                            <img src="assets/media/svg/brand-logos/nasa.svg" class="mh-30px mh-lg-40px" alt="" />
-                        </div>
-                        <!--end::Client-->
-                        <!--begin::Client-->
-                        <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Aspnetzero">
-                            <img src="assets/media/svg/brand-logos/aspnetzero.svg" class="mh-30px mh-lg-40px" alt="" />
-                        </div>
-                        <!--end::Client-->
-                        <!--begin::Client-->
-                        <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip"
-                            title="AON - Empower Results">
-                            <img src="assets/media/svg/brand-logos/aon.svg" class="mh-30px mh-lg-40px" alt="" />
-                        </div>
-                        <!--end::Client-->
-                        <!--begin::Client-->
-                        <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Hewlett-Packard">
-                            <img src="assets/media/svg/brand-logos/hp-3.svg" class="mh-30px mh-lg-40px" alt="" />
-                        </div>
-                        <!--end::Client-->
-                        <!--begin::Client-->
-                        <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Truman">
-                            <img src="assets/media/svg/brand-logos/truman.svg" class="mh-30px mh-lg-40px" alt="" />
-                        </div>
-                        <!--end::Client-->
-                    </div>
-                    <!--end::Clients-->
-                </div>
-                <!--end::Landing hero--> --}}
             </div>
             <!--end::Wrapper-->
-            {{-- <!--begin::Curve bottom-->
-            <div class="landing-curve landing-dark-color mb-10 mb-lg-20">
-                <svg viewBox="15 12 1470 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M0 11C3.93573 11.3356 7.85984 11.6689 11.7725 12H1488.16C1492.1 11.6689 1496.04 11.3356 1500 11V12H1488.16C913.668 60.3476 586.282 60.6117 11.7725 12H0V11Z"
-                        fill="currentColor"></path>
-                </svg>
-            </div>
-            <!--end::Curve bottom--> --}}
         </div>
         <!--end::Header Section-->
 

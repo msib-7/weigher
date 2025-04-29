@@ -22,8 +22,8 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required'
         ], [
-            'email.required' => 'Masukan EMail Onekalbe',
-            'email.email' => 'EMail Tidak Valid',
+            'email.required' => 'Masukan Email Onekalbe',
+            'email.email' => 'Email Tidak Valid',
             'password.required' => 'Masukan Password'
         ]);
 
@@ -50,7 +50,6 @@ class AuthController extends Controller
             }
         } else {
             $data = $this->hris($request);
-            $data;
             if (empty($data['accessToken']) || $data['accessToken'] == null) {
                 # code...
                 return response()->json([
@@ -90,8 +89,11 @@ class AuthController extends Controller
             $result = base64_decode($response[1]);
             $response = json_decode($result, true);
             $check = User::where('employeId', $response['NIK'])->first();
+
+            // Convert the $response array to JSON
+            $resultJson = json_encode($response);
+
             if (empty($check)) {
-                # code...
                 User::create([
                     'employeId' => $response['NIK'],
                     'fullname' => $response['Name'],
@@ -104,7 +106,7 @@ class AuthController extends Controller
                     'groupName' => $response['DivName'],
                     'groupKode' => $response['DivCode'],
                     'password' => Hash::make($request->password),
-                    'result' => $response
+                    'result' => $resultJson // Store as JSON string
                 ]);
             } else {
                 $check->update([
@@ -119,7 +121,7 @@ class AuthController extends Controller
                     'groupName' => $response['DivName'],
                     'groupKode' => $response['DivCode'],
                     'password' => Hash::make($request->password),
-                    'result' => $response
+                    'result' => $resultJson // Store as JSON string
                 ]);
             }
 
@@ -137,7 +139,6 @@ class AuthController extends Controller
                 'groupKode' => $response['DivCode'],
             ];
         } catch (\Throwable $th) {
-            //throw $th;
             Log::error($th);
             DB::rollBack();
             return null;

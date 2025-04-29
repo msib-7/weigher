@@ -13,7 +13,7 @@ Route::post('/auth', [AuthController::class, 'store'])->name('loginHris');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Route::prefix('v1')->name('v1.')->middleware(['auth', 'CheckJobLvlPermission'])->group(function () {
-Route::prefix('v1')->name('v1.')->group(function () {
+Route::prefix('v1')->name('v1.')->middleware(['auth'])->group(function () {
     Route::get('', [DashboardController::class, 'index'])->name('dashboard');
     Route::prefix('table')->name('table.')->group(function () {
         Route::get('raw', [DashboardController::class, 'index'])->name('raw');
@@ -44,4 +44,3 @@ Route::get('/getIpc/I/{bn}', [Individual::class, 'getIpc']);
 
 
 Route::get('/chart/1/{bn}', [Individual::class, 'loadChart1']);
-// Route::get('/getIpc/S/{bn}', [Group::class, 'getIpc']);

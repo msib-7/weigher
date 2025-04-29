@@ -20,7 +20,7 @@
             <h1 class="text-dark fw-bolder">Sign In</h1>
             <!--end::Title-->
             <!--begin::Subtitle-->
-            <div class="text-gray-500 fw-semibold fs-6">Portal Kanban QC</div>
+            <div class="text-gray-500 fw-semibold fs-6">Portal Data Timbangan</div>
             <!--end::Subtitle=-->
         </div>
         <!--begin::Heading-->
@@ -70,14 +70,14 @@
         <div class="fv-row mt-3 mb-2">
             <!--begin::Password-->
             <label for="password" class="required form-label  text-gray-600">Password</label>
-            <input type="password" id="password" placeholder="********" name="password" autocomplete="off"
+            <input type="password" id="password" placeholder="********" name="password"
                 class="form-control" />
             <!--end::Password-->
         </div>
         <!--end::Input group=-->
         <!--begin::Submit button-->
         <div class="d-grid mt-8">
-            <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary">
                 <span class="indicator-label">Log in Accout</span>
             </button>
         </div>
