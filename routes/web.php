@@ -32,10 +32,12 @@ Route::prefix('v1')->name('v1.')->middleware(['auth'])->group(function () {
 
 Route::get('/data/json/individu', [Individual::class, 'getData'])->name('data.jsonIndividu');
 Route::get('/data/json/kelompok', [Group::class, 'getData'])->name('data.jsonKelompok');
+Route::get('/data/json/kelompok/{bn}', [Group::class, 'getData'])->name('data.jsonKelompokBn');
 Route::get('/data/json/summary', [Summary::class, 'getData'])->name('data.jsonSummary');
 Route::get('/data', [DashboardController::class, 'index'])->name('data.index');
 
 Route::get('/getBn/I', [Individual::class, 'getBn']);
+Route::get('/getBn/G', [Group::class, 'getBn']);
 Route::get('/getBn2', [DashboardController::class, 'getBn']);
 Route::get('/getSummary/I/{bn}/{ipc}', [Individual::class, 'getSummary']);
 Route::get('/getSummary/G/{bn}/{ipc}', [Group::class, 'getSummary']);

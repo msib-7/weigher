@@ -160,10 +160,10 @@
                                         <thead>
                                             <tr>
                                                 @php
-            $columns = [
-                'datetime' => 'DATETIME',
-                'weight' => 'WEIGHT',
-            ];
+                                                $columns = [
+                                                    'datetime' => 'DATETIME',
+                                                    'weight' => 'WEIGHT',
+                                                ];
                                                 @endphp
 
                                                 <th class="table-header text-center">NO</th>

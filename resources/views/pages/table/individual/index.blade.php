@@ -16,10 +16,10 @@
                                     <span class="path2"></span>
                                 </i>
                             </a>
-                            <h4>Individual Data Penimbangan</h4>
+                            <h4>Data Penimbangan: Individual</h4>
                         </div>
                         <div class="card-toolbar">
-                            <button id="export-pdf-btn" class="btn btn-dark me-2">Export to PDF</button>
+                            <button id="export-pdf-btn" class="btn btn-primary me-2">Export to PDF</button>
                         </div>
                     </div>
                     <div class="card-body">

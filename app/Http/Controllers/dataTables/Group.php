@@ -19,27 +19,20 @@ class Group extends Controller
 {
     public function getData(Request $request)
     {
-        // Validasi harus ada parameter BN
         if ($request->ajax()) {
             $query = ms204ts_com9_4_group::query()
-                ->where('lot', $request->bn);
+                ->where('lot', $request->bn)
+                ->get();
 
-            return DataTables::of($query)
-                ->addIndexColumn()
-                ->editColumn('datetime', function ($row) {
-                    return Carbon::parse($row->datetime)->format('d-m-Y H:i:s');
-                })
-                ->make(true);
+            return response()->json($query);
         }
-        $query = ms204ts_com9_4_group::query()
-            ->where('lot', $request->bn);
 
-        return DataTables::of($query)
-            ->addIndexColumn()
-            ->editColumn('datetime', function ($row) {
-                return Carbon::parse($row->datetime)->format('d-m-Y H:i:s');
-            })
-            ->make(true);
+        $query = ms204ts_com9_4_group::query()
+            ->where('lot', $request->bn)
+            ->get();
+
+        $isAjax = 'false'; // Set this variable to false for non-AJAX requests
+        return view('pages.table.group.index', compact('query', 'isAjax'));
     }
 
     public function index(Request $request)
@@ -49,16 +42,35 @@ class Group extends Controller
 
     public function getBn(Request $request)
     {
-        $date = $request->date; // Ensure this is in 'Y-m-d' format if you're using whereDate
+        $date = $request->date; // Ensure this is in 'MM/DD/YYYY - MM/DD/YYYY' format
+        $token = strtok($date, " - ");
 
+        $date1 = '';
+        $date2 = '';
+
+        if ($token !== false) {
+            // Convert the first date to 'Y-m-d' format
+            $date1 = Carbon::createFromFormat('m/d/Y', $token)->format('Y-m-d');
+            $token = strtok(" - "); // Continue tokenizing with the same delimiter
+        }
+
+        if ($token !== false) {
+            // Convert the second date to 'Y-m-d' format
+            $date2 = Carbon::createFromFormat('m/d/Y', $token)->format('Y-m-d');
+        }
+
+        // Query the database
         $bns = ms204ts_com9_4_group::query()
             ->select('lot', 'datetime')
-            ->whereDate('datetime', '=', $date) // Use whereDate if you want to filter by date only
-            ->orderBy('lot', 'desc')
-            ->pluck('lot');
+            ->whereNotNull('lot') // Exclude records where 'lot' is null
+            ->whereBetween('datetime', [$date1, $date2]) // Use whereDate if you want to filter by date only
+            ->orderBy('datetime', 'desc')
+            ->get(); // Get the results as a collection
 
-        // Convert the collection to an array and filter unique values
-        $uniqueBns = $bns->unique()->values(); // This will keep only unique values
+        // Convert 'datetime' to 'Y-m-d' format and filter unique values based on 'lot' and 'datetime'
+        $uniqueBns = $bns->unique(function ($item) {
+            return $item->lot; // Create a unique key based on both fields
+        })->values(); // Reset the keys
 
         return response()->json($uniqueBns);
     }
