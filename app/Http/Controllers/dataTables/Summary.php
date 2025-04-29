@@ -11,13 +11,13 @@ class Summary extends Controller
 {
     public function getData()
     {
-        return DataTables::of(
-            ms303s_1_summary::query()
-                ->where('n', '!=', null)
-                ->orderBy('datetime', 'desc')
-        )
-            ->addIndexColumn()
-            ->toJson();
+        // return DataTables::of(
+        //     ms303s_1_summary::query()
+        //         ->where('n', '!=', null)
+        //         ->orderBy('datetime', 'desc')
+        // )
+        //     ->addIndexColumn()
+        //     ->toJson();
     }
 
     public function index()

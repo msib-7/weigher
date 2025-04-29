@@ -58,32 +58,6 @@ class DashboardController extends Controller
         return response()->json($uniqueBns);
     }
 
-    public function dataIndividu()
-    {
-        return DataTables::of(
-                ms303s_1::query()
-                ->where('no', '=', null)
-                ->orderBy('datetime', 'desc')
-                )->toJson();
-    }
-    public function dataKelompok()
-    {
-        return DataTables::of(
-                ms303s_1_group::query()
-                ->where('no', '!=', null)
-                ->where('n', '=', null)
-                ->where('bn', '!=', null)
-                ->orderBy('datetime', 'desc')
-                )->toJson();
-    }
-    public function dataSummary()
-    {
-        return DataTables::of(
-                ms303s_1::query()
-                ->where('n', '!=', null)
-                ->orderBy('datetime', 'desc')
-                )->toJson();
-    }
     public function index()
     {
         // return view('pages.homepage.index');
