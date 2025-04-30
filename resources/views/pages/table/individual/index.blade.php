@@ -20,6 +20,7 @@
                         </div>
                         <div class="card-toolbar">
                             <button id="export-pdf-btn" class="btn btn-primary me-2">Export to PDF</button>
+                            <button id="print-btn" class="btn btn-secondary me-2">Print</button>
                         </div>
                     </div>
                     <div class="card-body">
@@ -520,6 +521,7 @@
     <script>
         var JSON_INDIVIDU_URL = "{{ route('data.jsonIndividu') }}";
         var JSON_INDIVIDU_PRINT_URL = "{{ route('v1.table.individual.print') }}";
+        var JSON_PRINT_URL = "{{ route('v1.table.individual.printDirect') }}";
     </script>
     <script src="{{asset('assets/js/table/individual.js')}}"></script>
     

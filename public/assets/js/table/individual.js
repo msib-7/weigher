@@ -527,6 +527,21 @@ $(function () {
         });
     });
 
+    $("#print-btn").on("click", function (e) {
+        e.preventDefault(); // Prevent the default anchor behavior
+        // Send data to the controller
+        $.ajax({
+            url: JSON_PRINT_URL,
+            method: "POST",
+            data: {
+                // data: data,
+                // summary: summary,
+                // bn: bnParam,
+                _token: CSRF_TOKEN,
+            },
+        });
+    });
+
     // // Hide the tables initially
     // $('#weigher-table-individu').hide();
 

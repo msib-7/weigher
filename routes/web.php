@@ -20,6 +20,7 @@ Route::prefix('v1')->name('v1.')->middleware(['auth'])->group(function () {
         Route::prefix('individual')->name('individual.')->group(function () {
             Route::get('', [Individual::class, 'index'])->name('index');
             Route::post('print', [Individual::class, 'print'])->name('print');
+            Route::post('printDirect', [Individual::class, 'printD'])->name('printDirect');
         });
         Route::prefix('group')->name('group.')->group(function () {
             Route::get('', [Group::class, 'index'])->name('index');

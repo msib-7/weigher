@@ -7,7 +7,11 @@ use App\Models\ms204ts_com9_4\ms204ts_com9_4_individual;
 use App\Models\ms204ts_com9_4\ms204ts_com9_4_summary;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
+use Mike42\Escpos\PrintConnectors\NetworkPrintConnector;
+use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+use Mike42\Escpos\Printer;
 use Yajra\DataTables\Facades\DataTables;
 
 class Individual extends Controller
@@ -146,5 +150,23 @@ class Individual extends Controller
 
         // dd($dataAll);
         return response()->json($data);
+    }
+
+    public function printD()
+    {
+        try {
+            // $connector = new NetworkPrintConnector("172.24.72.247", 9100);
+            $connector = new WindowsPrintConnector("EPSON L1300 Series");
+
+            /* Print a "Hello world" receipt" */
+            $printer = new Printer($connector);
+            $printer->text("Hello World!\n");
+            $printer->cut();
+
+            /* Close printer */
+            $printer->close();
+        } catch (Exception $e) {
+            echo "Couldn't print to this printer: " . $e->getMessage() . "\n";
+        }
     }
 }
