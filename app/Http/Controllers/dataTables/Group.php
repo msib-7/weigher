@@ -19,20 +19,18 @@ class Group extends Controller
 {
     public function getData(Request $request)
     {
-        if ($request->ajax()) {
-            $query = ms204ts_com9_4_group::query()
-                ->where('lot', $request->bn)
-                ->get();
-
-            return response()->json($query);
-        }
-
-        $query = ms204ts_com9_4_group::query()
+        $query = ms204ts_com9_4_individual::query()
             ->where('lot', $request->bn)
-            ->get();
+            ->get()
+            ->map(function ($row) {
+                // Format the datetime field
+                $row->datetime = Carbon::parse($row->datetime)->format('d-m-Y H:i:s');
+                return $row;
+            });
 
-        $isAjax = 'false'; // Set this variable to false for non-AJAX requests
-        return view('pages.table.group.index', compact('query', 'isAjax'));
+        $data['dataGroup'] = $query;
+
+        return view('pages.table.group.partial.table', $data);
     }
 
     public function index(Request $request)
@@ -60,7 +58,7 @@ class Group extends Controller
         }
 
         // Query the database
-        $bns = ms204ts_com9_4_group::query()
+        $bns = ms204ts_com9_4_individual::query()
             ->select('lot', 'datetime')
             ->whereNotNull('lot') // Exclude records where 'lot' is null
             ->whereBetween('datetime', [$date1, $date2]) // Use whereDate if you want to filter by date only

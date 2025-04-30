@@ -80,265 +80,25 @@
                                                 <select name="bn-filter" id="bn-filter" data-control="select2" class="form-select form-select">
                                                     <option>No Data Match...</option>
                                                 </select>
-                                                <input type="hidden" name="isAjax" id="isAjax" value="{{ $isAjax ?? true }}">
                                                 <!--end::Select-->
                                             </div>
                                             <!--end::Input group-->
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-12 col-lg-4">
-                                            <div class="card">
-                                                {{-- <div class="card-header">
-                                                    <div class="card-title">
-                                                        <div class="text-center">
-                                                            <h4>IPC BOBOT INDIVIDU AWAL</h4>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-toolbar">
-                                                        <div class="d-flex align-items-center">
-                                                            <label for="custom-page-length-awal" class="form-label me-2">Entries:</label>
-                                                            <input type="number" id="custom-page-length-awal" class="form-control" style="width: 80px"
-                                                                min="1" value="10">
-                                                        </div>
-                                                    </div>
-                                                </div> --}}
-                                                <div class="card-body">
-                                                    {{-- <!--begin::Input group-->
-                                                    <div class="d-flex flex-column mb-5">
-                                                        <!--begin::Label-->
-                                                        <label class="d-flex align-items-center fs-5 fw-semibold mb-2" for="ipc-flag-select-awal">
-                                                            <span class="required text-gray-700">IPC Ke-</span>
-                                                            <span class="ms-1" data-bs-toggle="tooltip" title="Pilih IPC untuk ditampilkan">
-                                                                <i class="ki-duotone ki-information fs-7">
-                                                                    <span class="path1"></span>
-                                                                    <span class="path2"></span>
-                                                                    <span class="path3"></span>
-                                                                </i>
-                                                            </span>
-                                                        </label>
-                                                        <!--end::Label-->
-                                                        <!--begin::Select-->
-                                                        <select name="bn-filter" id="ipc-flag-select-awal" class="form-select form-select">
-                                                            <option value="">loading...</option>
-                                                        </select>
-                                                        <!--end::Select-->
-                                                    </div> --}}
-                                                    <!--end::Input group-->
-                                                    <div class="card-content">
-                                                        <div class="table-responsive">
-                                                            <table class="table table-striped table-bordered table-hover" style="width:100%" id="weigher-table-individu-awal">
-                                                                <thead>
-                                                                    <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase">
-                                                                        <th class="text-start" style="width: 125px;">No.Tablet/Sample</th>
-                                                                        <th class="text-start">DateTime</th>
-                                                                        <th class="text-start">weight</th>
-                                                                        <th class="text-start">ipc</th>
-                                                                    </tr>
-                                                                </thead>
-                                                            </table>
-                                                        </div>
-                                                    </div>
+                                    <div class="table-dynamic" id="table-dynamic">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="text-center">
+                                                    <h3 class="fw-bold text-gray-600">
+                                                        Please Select Date and Batch Number First!
+                                                    </h3>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12 col-lg-4">
-                                            <div class="card">
-                                                {{-- <div class="card-header">
-                                                    <div class="card-title">
-                                                        <div class="text-center">
-                                                            <h4>IPC BOBOT INDIVIDU TENGAH</h4>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-toolbar">
-                                                        <label for="custom-page-length-tengah" class="form-label me-2">Entries:</label>
-                                                        <input type="number" id="custom-page-length-tengah" class="form-control" style="width: 80px" min="1"
-                                                            value="10">
-                                                    </div>
-                                                </div> --}}
-                                                <div class="card-body">
-                                                    {{-- <!--begin::Input group-->
-                                                    <div class="d-flex flex-column mb-5">
-                                                        <!--begin::Label-->
-                                                        <label class="d-flex align-items-center fs-5 fw-semibold mb-2" for="ipc-flag-select-tengah">
-                                                            <span class="required text-gray-700">IPC Ke-</span>
-                                                            <span class="ms-1" data-bs-toggle="tooltip" title="Pilih IPC untuk ditampilkan">
-                                                                <i class="ki-duotone ki-information fs-7">
-                                                                    <span class="path1"></span>
-                                                                    <span class="path2"></span>
-                                                                    <span class="path3"></span>
-                                                                </i>
-                                                            </span>
-                                                        </label>
-                                                        <!--end::Label-->
-                                                        <!--begin::Select-->
-                                                        <select name="bn-filter" id="ipc-flag-select-tengah" data-control="select2"
-                                                            data-placeholder="pilih BN" class="form-select form-select">
-                                                            <option value="">loading...</option>
-                                                        </select>
-                                                        <!--end::Select-->
-                                                    </div>
-                                                    <!--end::Input group--> --}}
-                                                    <div class="table-responsive">
-                                                        <table class="table table-striped table-bordered table-hover" style="width:100%" id="weigher-table-individu-tengah">
-                                                            <thead>
-                                                                <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase">
-                                                                    <th class="text-start" style="width: 125px;">No.Tablet/Sample</th>
-                                                                    <th class="text-start">DateTime</th>
-                                                                    <th class="text-start">weight</th>
-                                                                    <th class="text-start">ipc</th>
-                                                                </tr>
-                                                            </thead>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-lg-4">
-                                            <div class="card ">
-                                                {{-- <div class="card-header">
-                                                    <div class="card-title">
-                                                        <div class="text-center">
-                                                            <h4>IPC BOBOT INDIVIDU AKHIR</h4>
-                                                        </div>
-                                                    </div>
-                                                </div> --}}
-                                                <div class="card-body">
-                                                    {{-- <!--begin::Input group-->
-                                                    <div class="d-flex flex-column mb-5">
-                                                        <!--begin::Label-->
-                                                        <label class="d-flex align-items-center fs-5 fw-semibold mb-2" for="ipc-flag-select-akhir">
-                                                            <span class="required text-gray-700">IPC Ke-</span>
-                                                            <span class="ms-1" data-bs-toggle="tooltip" title="Pilih IPC untuk ditampilkan">
-                                                                <i class="ki-duotone ki-information fs-7">
-                                                                    <span class="path1"></span>
-                                                                    <span class="path2"></span>
-                                                                    <span class="path3"></span>
-                                                                </i>
-                                                            </span>
-                                                        </label>
-                                                        <!--end::Label-->
-                                                        <!--begin::Select-->
-                                                        <select name="bn-filter" id="ipc-flag-select-akhir" data-control="select2"
-                                                            data-placeholder="pilih BN" class="form-select form-select">
-                                                            <option value="">loading...</option>
-                                                        </select>
-                                                        <!--end::Select-->
-                                                    </div>
-                                                    <!--end::Input group--> --}}
-                                                    <div class="table-responsive">
-                                                        <table class="table table-striped table-bordered table-hover" style="width:100%" id="weigher-table-individu-akhir">
-                                                            <thead>
-                                                                <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase">
-                                                                    <th class="text-start" style="width: 125px;">No.Tablet/Sample</th>
-                                                                    <th class="text-start">DateTime</th>
-                                                                    <th class="text-start">weight</th>
-                                                                    <th class="text-start">ipc</th>
-                                                                </tr>
-                                                            </thead>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-5">
-                                        <div class="col"></div>
-                                        <div class="col">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <table class="table table-bordered" style="">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>
-                                                                    <span class="fs-5 fw-bold">
-                                                                        N
-                                                                    </span>
-                                                                </td>
-                                                                <td>
-                                                                    <span class="n-tengah">0</span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <span class="fs-5 fw-bold">
-                                                                        X
-                                                                    </span>
-                                                                </td>
-                                                                <td>
-                                                                    <span class="x-tengah">0</span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <span class="fs-5 fw-bold">
-                                                                        S_DEV
-                                                                    </span>
-                                                                </td>
-                                                                <td>
-                                                                    <span class="s_dev-tengah">0</span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <span class="fs-5 fw-bold">
-                                                                        S_REL
-                                                                    </span>
-                                                                </td>
-                                                                <td>
-                                                                    <span class="s_rel-tengah">0</span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <span class="fs-5 fw-bold">
-                                                                        MIN
-                                                                    </span>
-                                                                </td>
-                                                                <td>
-                                                                    <span class="min-tengah">0</span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <span class="fs-5 fw-bold">
-                                                                        MAX
-                                                                    </span>
-                                                                </td>
-                                                                <td>
-                                                                    <span class="max-tengah">0</span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <span class="fs-5 fw-bold">
-                                                                        DIFF
-                                                                    </span>
-                                                                </td>
-                                                                <td>
-                                                                    <span class="diff-tengah">0</span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <span class="fs-5 fw-bold">
-                                                                        SUM
-                                                                    </span>
-                                                                </td>
-                                                                <td>
-                                                                    <span class="sum-tengah">0</span>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col"></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row my-10">
+                            {{-- <div class="row my-10">
                                 <div class="col">
                                     <div class="card card-flush ">
                                         <div class="card-body">
@@ -346,7 +106,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -362,24 +122,8 @@
         $(function () {
             $("#kt_daterangepicker_1").daterangepicker();
             let bnParam;
-            let selectedBn;
-            let selectedFlag1, selectedFlag2, selectedFlag3;
             let chart1, chart2, chart3;
-            var isAjax = $('#isAjax').val() == 'true' ? true : false;
 
-            if (isAjax != true) {
-                bnParam = window.location.pathname.split('/')[4]; // Ambil nilai BN dari URL segment 4
-                // Hide the tables initially
-                $('#weigher-table-individu-awal').show();
-                $('#weigher-table-individu-tengah').show();
-                $('#weigher-table-individu-akhir').show();
-            } else {
-                $('#weigher-table-individu-awal').hide();
-                $('#weigher-table-individu-tengah').hide();
-                $('#weigher-table-individu-akhir').hide();
-
-            }
-            
             // Event listener untuk memeriksa pilihan
             $('#kt_daterangepicker_1').on('change', function () {
                 loadBnOptions();
@@ -393,10 +137,15 @@
                     bnParam = All; // Set ke null jika "All Batches" dipilih
                 }
 
-                window.location.href = "{{route('data.jsonKelompokBn', ':id')}}".replace(':id', bnParam); // Redirect ke halaman yang sama dengan parameter BN
-
-                // loadIpcFlags(bnParam); // Load IPC flags berdasarkan BN yang dipilih
-                // resetSum(); // Reset summary values
+                $.ajax({
+                    url: "{{ route('v1.table.group.getData') }}", // Define your search route
+                    method: 'GET',
+                    data: { bn: bnParam },
+                    success: function (data) {
+                        // Update the content with the search results
+                        $('#table-dynamic').html(data);
+                    }
+                });
             });
 
             function loadBnOptions() {
@@ -490,62 +239,62 @@
                 });
             }
 
-            var tableAwal = $("#weigher-table-individu-awal").DataTable({
-                processing: true,
-                serverSide: true,
-                order: [[0, "asc"]],
-                info: false,
-                ajax: {
-                    url: '{!! route('data.jsonKelompok') !!}',
-                    data: function (d) {
-                        d.bn = bnParam; // Selalu gunakan BN dari URL
-                    },
-                },
-                columns: [
-                    { data: "no" },
-                    { data: "datetime" },
-                    { data: "weight" },
-                    { data: "ipc" },
-                ],
-            });
+            // var tableAwal = $("#weigher-table-individu-awal").DataTable({
+            //     processing: true,
+            //     serverSide: true,
+            //     order: [[0, "asc"]],
+            //     info: false,
+            //     ajax: {
+            //         url: '{!! route('data.jsonKelompok') !!}',
+            //         data: function (d) {
+            //             d.bn = bnParam; // Selalu gunakan BN dari URL
+            //         },
+            //     },
+            //     columns: [
+            //         { data: "no" },
+            //         { data: "datetime" },
+            //         { data: "weight" },
+            //         { data: "ipc" },
+            //     ],
+            // });
 
-            var tableTengah = $("#weigher-table-individu-tengah").DataTable({
-                processing: true,
-                serverSide: true,
-                order: [[0, "asc"]],
-                info: false,
-                ajax: {
-                    url: '{!! route('data.jsonKelompok') !!}',
-                    data: function (d) {
-                        d.bn = bnParam; // Selalu gunakan BN dari URL
-                    },
-                },
-                columns: [
-                    { data: "no" },
-                    { data: "datetime" },
-                    { data: "weight" },
-                    { data: "ipc" },
-                ],
-            });
+            // var tableTengah = $("#weigher-table-individu-tengah").DataTable({
+            //     processing: true,
+            //     serverSide: true,
+            //     order: [[0, "asc"]],
+            //     info: false,
+            //     ajax: {
+            //         url: '{!! route('data.jsonKelompok') !!}',
+            //         data: function (d) {
+            //             d.bn = bnParam; // Selalu gunakan BN dari URL
+            //         },
+            //     },
+            //     columns: [
+            //         { data: "no" },
+            //         { data: "datetime" },
+            //         { data: "weight" },
+            //         { data: "ipc" },
+            //     ],
+            // });
 
-            var tableAkhir = $("#weigher-table-individu-akhir").DataTable({
-                processing: true,
-                serverSide: true,
-                order: [[0, "asc"]],
-                info: false,
-                ajax: {
-                    url: '{!! route('data.jsonKelompok') !!}',
-                    data: function (d) {
-                        d.bn = bnParam; // Selalu gunakan BN dari URL
-                    },
-                },
-                columns: [
-                    { data: "no" },
-                    { data: "datetime" },
-                    { data: "weight" },
-                    { data: "ipc" },
-                ],
-            });
+            // var tableAkhir = $("#weigher-table-individu-akhir").DataTable({
+            //     processing: true,
+            //     serverSide: true,
+            //     order: [[0, "asc"]],
+            //     info: false,
+            //     ajax: {
+            //         url: '{!! route('data.jsonKelompok') !!}',
+            //         data: function (d) {
+            //             d.bn = bnParam; // Selalu gunakan BN dari URL
+            //         },
+            //     },
+            //     columns: [
+            //         { data: "no" },
+            //         { data: "datetime" },
+            //         { data: "weight" },
+            //         { data: "ipc" },
+            //     ],
+            // });
 
             $('#export-pdf-btn').on('click', function (e) {
                 var bnParam = $('#bn-display').text();

@@ -24,6 +24,7 @@ Route::prefix('v1')->name('v1.')->middleware(['auth'])->group(function () {
         Route::prefix('group')->name('group.')->group(function () {
             Route::get('', [Group::class, 'index'])->name('index');
             Route::post('print', [Group::class, 'print'])->name('print');
+            Route::get('get', [Group::class, 'getData'])->name('getData');
         });
         // Route::get('group', [Group::class, 'index'])->name('group');
         Route::get('summary', [Summary::class, 'index'])->name('summary');
