@@ -72,7 +72,6 @@
                                     </div>
                                     <hr class="text-gray-300 mb-5"/>
                                     <div class="row">
-                                        {{-- <div class="col col-xl-4"> --}}
                                         <div class="col-12 col-lg-4">
                                             <div class="card shadow">
                                                 <div class="card-header">
@@ -505,77 +504,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- <div class="col col-xl-8">
-                                            <div class="card card-bordered">
-                                                <div class="card-body">
-                                                    <div id="lineChart1" style="height: 350px;"></div>
-                                                </div>
-                                            </div>
-                                            <div class="row row-cols-1 row-cols-xl-2">
-                                                <div class="col">
-                                                    <div class="card card-bordered">
-                                                        <div class="card-body">
-                                                            <h3 class="fw-bold">No. Tablet - Weight</h3>
-                                                            <div id="pieChart1" style="height: 350px;"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card card-bordered">
-                                                        <div class="card-body">
-                                                            <h3 class="fw-bold">IPC - Total Weight</h3>
-                                                            <div id="pieChart2" style="height: 350px;"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <div class="card card-flush card-bordered">
-                                                        <div class="card-header">
-                                                            <h3 class="card-title">Min. Weight</h3>
-                                                            <div class="card-toolbar">
-                                                                <small><i>(in Batch Number)</i></small><br>
-                                                            </div>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <span class="fs-3hx fw-bold text-gray-800 lh-1 ls-n2" id="min_weight_value">0</span>
-                                                            <div class="row mt-2">
-                                                                <div class="col">
-                                                                    <span class="fs-3 fw-semibold text-gray-600">IPC: </span>
-                                                                    <span class="fs-3 fw-semibold text-gray-800" id="min_weight_ipc">14</span>
-                                                                    <br>
-                                                                    <span class="fs-3 fw-semibold text-gray-600">No.Tablet: </span>
-                                                                    <span class="fs-3 fw-semibold text-gray-800" id="min_weight_tablet">3 </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-4">
-                                                    <div class="card card-flush card-bordered">
-                                                        <div class="card-header">
-                                                            <h3 class="card-title">Max. Weight</h3>
-                                                            <div class="card-toolbar">
-                                                                <small><i>(in Batch Number)</i></small><br>
-                                                            </div>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <span class="fs-3hx fw-bold text-gray-800 lh-1 ls-n2" id="max_weight_value">0</span>
-                                                            <div class="row mt-2">
-                                                                <div class="col">
-                                                                    <span class="fs-3 fw-semibold text-gray-600">IPC: </span>
-                                                                    <span class="fs-3 fw-semibold text-gray-800" id="max_weight_ipc">14</span>
-                                                                    <br>
-                                                                    <span class="fs-3 fw-semibold text-gray-600">No.Tablet: </span>
-                                                                    <span class="fs-3 fw-semibold text-gray-800" id="max_weight_tablet">3 </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> --}}
                                     </div>
                                 </div>
                             </div>

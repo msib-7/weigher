@@ -38,6 +38,7 @@ Route::get('/data', [DashboardController::class, 'index'])->name('data.index');
 
 Route::get('/getBn/I', [Individual::class, 'getBn']);
 Route::get('/getBn/G', [Group::class, 'getBn']);
+Route::get('/getBn/S', [Summary::class, 'getBn']);
 Route::get('/getBn2', [DashboardController::class, 'getBn']);
 Route::get('/getSummary/I/{bn}/{ipc}', [Individual::class, 'getSummary']);
 Route::get('/getSummary/G/{bn}/{ipc}', [Group::class, 'getSummary']);
