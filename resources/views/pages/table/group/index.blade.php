@@ -80,7 +80,7 @@
                                                 <select name="bn-filter" id="bn-filter" data-control="select2" class="form-select form-select">
                                                     <option>No Data Match...</option>
                                                 </select>
-                                                <input type="hidden" name="isAjax" id="isAjax" value="{{ $isAjax }}">
+                                                <input type="hidden" name="isAjax" id="isAjax" value="{{ $isAjax ?? true }}">
                                                 <!--end::Select-->
                                             </div>
                                             <!--end::Input group-->
@@ -365,8 +365,10 @@
             let selectedBn;
             let selectedFlag1, selectedFlag2, selectedFlag3;
             let chart1, chart2, chart3;
+            var isAjax = $('#isAjax').val() == 'true' ? true : false;
 
-            if ({{ $isAjax }} == 'false' || {{ $isAjax }} == false) {
+            if (isAjax != true) {
+                bnParam = window.location.pathname.split('/')[4]; // Ambil nilai BN dari URL segment 4
                 // Hide the tables initially
                 $('#weigher-table-individu-awal').show();
                 $('#weigher-table-individu-tengah').show();
@@ -377,7 +379,7 @@
                 $('#weigher-table-individu-akhir').hide();
 
             }
-
+            
             // Event listener untuk memeriksa pilihan
             $('#kt_daterangepicker_1').on('change', function () {
                 loadBnOptions();
