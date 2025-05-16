@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'laravel/laravel',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => 'c2ebe65b8af78278fc848e901cc60920e3e658e6',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -521,9 +521,9 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'c2ebe65b8af78278fc848e901cc60920e3e658e6',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -1125,9 +1125,9 @@
             'dev_requirement' => false,
         ),
         'rawilk/laravel-printing' => array(
-            'pretty_version' => 'v3.0.5',
-            'version' => '3.0.5.0',
-            'reference' => '07f4b4d9a3a1f29e727eecff2b7fe44acc067bd8',
+            'pretty_version' => 'v3.0.6',
+            'version' => '3.0.6.0',
+            'reference' => 'd5312bebdd540d0b2e2e314fcd74b5ce8545c4b5',
             'type' => 'library',
             'install_path' => __DIR__ . '/../rawilk/laravel-printing',
             'aliases' => array(),

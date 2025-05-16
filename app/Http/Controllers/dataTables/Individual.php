@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Mike42\Escpos\PrintConnectors\NetworkPrintConnector;
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 use Mike42\Escpos\Printer;
+use Rawilk\Printing\Facades\Printing;
 use Yajra\DataTables\Facades\DataTables;
 
 class Individual extends Controller
@@ -54,7 +55,7 @@ class Individual extends Controller
         return view('pages.table.individual.index');
     }
 
-    public function print(Request $request)
+    public function exportPDF(Request $request)
     {
         // Generate a unique print ID
         $printId = (string) \Ramsey\Uuid\Uuid::uuid4();
@@ -68,7 +69,8 @@ class Individual extends Controller
         $data['summaryAkhir'] = $request->summary['akhir']; // This is also an array
 
         $pdf = Pdf::loadView('partials.pdf.individual.index', $data)->setPaper('a4', 'landscape')->set_option('isPhpEnabled', true);
-        return $pdf->download('Individual.pdf');
+        $formattedDate = Carbon::now()->format('d M Y H:i:s');
+        return $pdf->download('Individual_' . $formattedDate . '.pdf');
     }
 
     public function getIpc($bn)
@@ -152,21 +154,55 @@ class Individual extends Controller
         return response()->json($data);
     }
 
-    public function printD()
+    public function printD(Request $request)
     {
-        try {
-            // $connector = new NetworkPrintConnector("172.24.72.247", 9100);
-            $connector = new WindowsPrintConnector("EPSON L1300 Series");
+        // try {
+        //     // $connector = new NetworkPrintConnector("172.24.72.247", 9100);
+        //     $connector = new WindowsPrintConnector("EPSON L1300 Series");
 
-            /* Print a "Hello world" receipt" */
-            $printer = new Printer($connector);
-            $printer->text("Hello World!\n");
-            $printer->cut();
+        //     /* Print a "Hello world" receipt" */
+        //     $printer = new Printer($connector);
+        //     $printer->text("Hello World!\n");
+        //     $printer->cut();
 
-            /* Close printer */
-            $printer->close();
-        } catch (Exception $e) {
-            echo "Couldn't print to this printer: " . $e->getMessage() . "\n";
+        //     /* Close printer */
+        //     $printer->close();
+        // } catch (Exception $e) {
+        //     echo "Couldn't print to this printer: " . $e->getMessage() . "\n";
+        // }
+        // Generate a unique print ID
+        $printId = (string) \Ramsey\Uuid\Uuid::uuid4();
+        $data['printId'] = $printId;
+        $data['namaMesin'] = 'ms204ts_com9_4';
+        $data['namaBn'] = $request->bn;
+        // Get the data and summary from the request
+        $data['dataTimbangan'] = $request->data; // This is already an array
+        $data['summaryAwal'] = $request->summary['awal']; // This is also an array
+        $data['summaryTengah'] = $request->summary['tengah']; // This is also an array
+        $data['summaryAkhir'] = $request->summary['akhir']; // This is also an array
+
+        $formattedDate = Carbon::now()->format('d-M-Y_H:i:s');
+        $pdfName = 'Individual_' . $formattedDate;
+        $pdf = Pdf::loadView('partials.pdf.individual.index', $data)->setPaper('a4', 'landscape')->set_option('isPhpEnabled', true);
+
+        // Sanitize filename
+        $pdfName = str_replace([':', '\\', '/', '*', '?', '"', '<', '>', '|'], '-', $pdfName);
+
+        // Define directory (using absolute path)
+        $directory = '../public/assets/pdf/'; // Adjust this path as needed
+
+        // Create directory if missing
+        if (!file_exists($directory)) {
+            mkdir($directory, 0755, true);
         }
+
+        $pdfNameFinal = $pdfName . '.pdf';
+        // Save and stream
+        $pdf->save($directory . $pdfNameFinal);
+
+        Printing::newPrintTask()
+            ->printer(74325571)
+            ->file('../public/assets/pdf/' . $pdfNameFinal)
+            ->send();
     }
 }

@@ -520,7 +520,7 @@
     <script src="{{asset('assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
     <script>
         var JSON_INDIVIDU_URL = "{{ route('data.jsonIndividu') }}";
-        var JSON_INDIVIDU_PRINT_URL = "{{ route('v1.table.individual.print') }}";
+        var JSON_INDIVIDU_PRINT_URL = "{{ route('v1.table.individual.export.pdf') }}";
         var JSON_PRINT_URL = "{{ route('v1.table.individual.printDirect') }}";
     </script>
     <script src="{{asset('assets/js/table/individual.js')}}"></script>

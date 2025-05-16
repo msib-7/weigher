@@ -517,7 +517,7 @@ $(function () {
         // Send data to the controller
         $.ajax({
             url: JSON_INDIVIDU_PRINT_URL,
-            method: "POST",
+            method: "get",
             data: {
                 data: data,
                 summary: summary,
@@ -529,14 +529,78 @@ $(function () {
 
     $("#print-btn").on("click", function (e) {
         e.preventDefault(); // Prevent the default anchor behavior
+
+        // Check if any of the tables are hidden
+        var isAwalVisible = $("#weigher-table-individu-awal").is(":visible");
+        var isTengahVisible = $("#weigher-table-individu-tengah").is(
+            ":visible"
+        );
+        var isAkhirVisible = $("#weigher-table-individu-akhir").is(":visible");
+
+        // // If any table is hidden, show an alert and return
+
+        // Gather data from all DataTables
+        var dataAwal = isAwalVisible ? tableAwal.rows().data().toArray() : [];
+        var dataTengah = isTengahVisible
+            ? tableTengah.rows().data().toArray()
+            : [];
+        var dataAkhir = isAkhirVisible
+            ? tableAkhir.rows().data().toArray()
+            : [];
+
+        var data = {
+            awal: dataAwal,
+            tengah: dataTengah,
+            akhir: dataAkhir,
+        };
+
+        var summaryAwal = {
+            n: parseFloat($(".n-awal").text()),
+            x: parseFloat($(".x-awal").text()),
+            s_dev: parseFloat($(".s_dev-awal").text()),
+            s_rel: parseFloat($(".s_rel-awal").text()),
+            min: parseFloat($(".min-awal").text()),
+            max: parseFloat($(".max-awal").text()),
+            diff: parseFloat($(".diff-awal").text()),
+            sum: parseFloat($(".sum-awal").text()),
+        };
+
+        var summaryTengah = {
+            n: parseFloat($(".n-tengah").text()),
+            x: parseFloat($(".x-tengah").text()),
+            s_dev: parseFloat($(".s_dev-tengah").text()),
+            s_rel: parseFloat($(".s_rel-tengah").text()),
+            min: parseFloat($(".min-tengah").text()),
+            max: parseFloat($(".max-tengah").text()),
+            diff: parseFloat($(".diff-tengah").text()),
+            sum: parseFloat($(".sum-tengah").text()),
+        };
+
+        var summaryAkhir = {
+            n: parseFloat($(".n-akhir").text()),
+            x: parseFloat($(".x-akhir").text()),
+            s_dev: parseFloat($(".s_dev-akhir").text()),
+            s_rel: parseFloat($(".s_rel-akhir").text()),
+            min: parseFloat($(".min-akhir").text()),
+            max: parseFloat($(".max-akhir").text()),
+            diff: parseFloat($(".diff-akhir").text()),
+            sum: parseFloat($(".sum-akhir").text()),
+        };
+
+        var summary = {
+            awal: summaryAwal,
+            tengah: summaryTengah,
+            akhir: summaryAkhir,
+        };
+
         // Send data to the controller
         $.ajax({
             url: JSON_PRINT_URL,
             method: "POST",
             data: {
-                // data: data,
-                // summary: summary,
-                // bn: bnParam,
+                data: data,
+                summary: summary,
+                bn: bnParam,
                 _token: CSRF_TOKEN,
             },
         });

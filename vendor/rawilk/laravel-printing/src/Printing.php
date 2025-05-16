@@ -47,7 +47,7 @@ class Printing implements Driver
     {
         try {
             $printer = $this->driver->printer($printerId);
-        } catch (Throwable) {
+        } catch (Throwable $e) {
             $printer = null;
         }
 

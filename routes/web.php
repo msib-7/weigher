@@ -19,7 +19,7 @@ Route::prefix('v1')->name('v1.')->middleware(['auth'])->group(function () {
         Route::get('raw', [DashboardController::class, 'index'])->name('raw');
         Route::prefix('individual')->name('individual.')->group(function () {
             Route::get('', [Individual::class, 'index'])->name('index');
-            Route::post('print', [Individual::class, 'print'])->name('print');
+            Route::get('pdf', [Individual::class, 'exportPDF'])->name('export.pdf');
             Route::post('printDirect', [Individual::class, 'printD'])->name('printDirect');
         });
         Route::prefix('group')->name('group.')->group(function () {
